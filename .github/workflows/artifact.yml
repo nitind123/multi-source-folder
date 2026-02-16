@@ -1,13 +1,11 @@
 name: artifactUpload
+
 on:
-  push:
-    branches: [main]
-# on:
-#   workflow_dispatch:
-#     inputs:
-#       id:
-#         description: "run identifier"
-#         required: false
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "run identifier"
+        required: false
 
 jobs:
   upload:
