@@ -57,10 +57,10 @@ jobs:
         env:
           JF_URL: https://z0artifactviewdev1.jfrogdev.org
           JF_ACCESS_TOKEN: ${{ secrets.JFROG_TEST_TOKEN }}
-      # - name: deploy_artifact
-      #   run: |
-      #     jf --version
-      #     jf rt upload --server-id productdemo "jfrog_cli.go" go-2/go.mod --build-name $JFROG_CLI_BUILD_NAME --build-number $JFROG_CLI_BUILD_NUMBER --module "artifact-view-demo"    
+      - name: deploy_artifact
+        run: |
+          jf --version
+          jf rt upload --server-id productdemo "jfrog_cli.go" go-2/go.mod --build-name $JFROG_CLI_BUILD_NAME --build-number $JFROG_CLI_BUILD_NUMBER --module "artifact-view-demo"    
 
       - name: Push to JFrog
         run: |
