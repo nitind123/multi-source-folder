@@ -1,12 +1,19 @@
 name: build-upload-github-jfrog
 
+# on:
+#   push:
+#     branches: [main]
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "run identifier"
+        required: false
+
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     permissions:
       id-token: write
       packages: write
@@ -57,10 +64,10 @@ jobs:
         env:
           JF_URL: https://z0artifactviewdev1.jfrogdev.org
           JF_ACCESS_TOKEN: ${{ secrets.JFROG_TEST_TOKEN }}
-      - name: deploy_artifact
-        run: |
-          jf --version
-          jf rt upload --server-id productdemo "jfrog_cli.go" go-2/go.mod --build-name $JFROG_CLI_BUILD_NAME --build-number $JFROG_CLI_BUILD_NUMBER --module "artifact-view-demo"    
+      # - name: deploy_artifact
+      #   run: |
+      #     jf --version
+      #     jf rt upload --server-id productdemo "jfrog_cli.go" go-2/go.mod --build-name $JFROG_CLI_BUILD_NAME --build-number $JFROG_CLI_BUILD_NUMBER --module "artifact-view-demo"    
 
       - name: Push to JFrog
         run: |
