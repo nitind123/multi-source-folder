@@ -90,7 +90,8 @@ jobs:
           JFROG_IMAGE="z0artifactviewdev1.jfrogdev.org/sha-docker-repo/test:${RUN_ID}"
           JFROG_LATEST="z0artifactviewdev1.jfrogdev.org/sha-docker-repo/org:latest"
 
-          docker pull "$IMAGE_REF"
+          # Image was built on ubuntu-latest (linux/amd64); pull that platform on arm64 runners
+          docker pull --platform linux/amd64 "$IMAGE_REF"
           docker tag "$IMAGE_REF" "$JFROG_IMAGE"
           docker tag "$JFROG_IMAGE" "$JFROG_LATEST"
           jfrog docker push "$JFROG_IMAGE" --server-id=productdemo
