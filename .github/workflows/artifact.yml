@@ -18,17 +18,12 @@ jobs:
         uses: jfrog/setup-jfrog-cli@v4
         with:
           version: 2.89.0
+          custom-server-id: aview2
         env:
           JF_URL: ${{ secrets.JFROG_TEST_URL }}
           JF_ACCESS_TOKEN: ${{ secrets.JFROG_TEST_TOKEN  }}
           JFROG_CLI_LOG_LEVEL: DEBUG
-      - name: Set up JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v4
-        with:
-          custom-server-id: aview2
-        env:
-          JF_URL: ${{ secrets.JFROG_TEST_URL }}
-          JF_ACCESS_TOKEN: ${{ secrets.JFROG_TEST_TOKEN }}    
+      
       - name: Checkout
         uses: actions/checkout@v2
       - name: deploy_artifact
